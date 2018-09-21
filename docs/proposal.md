@@ -1,10 +1,14 @@
 # TEAM NAME
 
+* 404 Name Not Found
+
 # WEB APPLICATION NAME
+
+* Discourz
 
 # Team Overview
 
-* Team Member Name 1, Github Username 1
+* Prakrit Saetang, Number535
 * Team Member Name 2, Github Username 2
 * Team Member Name 3, Github Username 3
 * Team Member Name 4, Github Username 4
