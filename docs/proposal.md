@@ -27,5 +27,8 @@ Please describe the important data that your application will be managing.
 Provide a description and images of the user interface your
 application will intend on supporting.
 
-![example image](imgs/chick.jpg)
+![example image](imgs/UI_home.png)
+![example image](imgs/UI_user.png)
+![example image](imgs/UI_poll.png)
+
 
