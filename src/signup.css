@@ -1,0 +1,96 @@
+body {
+	background-color: black;
+}
+
+.login-box {
+
+	border-radius: 15px;
+	position: absolute;
+	margin-top: 5%;
+	margin-left: 34%;
+	display: block;
+	background-color: lightgrey;
+	width: 32%;
+	height: 500px;
+}
+
+.inputform {
+	text-align: center;
+	width: 100%;
+	padding: 3px 5px 5px 5px;
+	margin: 0px 0px 10px 0px;
+}
+
+.inputform input {
+	border: 0;
+	padding: 8px 5px 8px 5px;
+	border-radius: 10px;
+	width: 65%
+}
+
+.inputform input:hover {
+	box-shadow: 1px 1px 10px 2px grey inset;
+}
+
+.inputform i {
+	border-bottom-left-radius: 10px;
+	border-top-left-radius: 10px;
+	background-color: lightgreen;
+	padding: 11px 11px 11px 11px;
+
+	margin-right: 0px;
+}
+
+.inputform button {
+	background-color: lightgreen;
+	font-family: "Arial Black", Gadget, sans-serif;
+	border: 0px;
+	padding: 8px 5px 8px 5px;
+	border-radius: 10px;
+	width: 65%;
+	transition: 0.5s;
+}
+
+.inputform button:hover {
+	width: 70%;
+	transition: 0.5s;
+	background-color: green;
+}
+
+.inputform2 {
+	text-align: center;
+	width: 100%;
+	padding: 5px 0px 5px 0px;
+	margin: 10px 0px 10px 0px;
+}
+
+.inputform2 input:hover {
+	box-shadow: 1px 1px 1px 1px grey inset;
+}
+
+.inputform3 {
+	text-align: center;
+	width: 100%;
+	padding: 0px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
+}
+
+.checkPassword {
+	width: 55%;
+	text-align: right;
+	display: inline-block;
+}
+
+.inputtext {
+	width: 65%;
+	text-align: left;
+	display: inline-block;
+}
+
+.loginText {
+	font-family: "Arial Black", Gadget, sans-serif;
+	width: 65%;
+	text-align: left;
+	display: inline-block;
+}
+

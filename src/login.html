@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="login.css">
+
+  <script type="text/javascript" src="login.js"></script>
+</head>
+<body>
+
+<div class="container-fluid">
+
+  <div class="login-box">
+    <div class="inputform2">
+        <span class="loginText">
+          <h1>Log in</h1>
+        </span>
+    </div>
+      
+  
+    <form>
+      <div class="inputform">
+        <span><i class="glyphicon glyphicon-user"></i></span>
+        <input id="email" type="text" name="email" placeholder="Email">
+      </div>
+      <div class="inputform">
+        <span><i class="glyphicon glyphicon-lock"></i></span>
+        <input id="password" type="password" name="password" placeholder="Password">
+      </div>
+      <div class="inputform2">
+        <span class="checkPassword">
+          <input type="checkbox" onclick="togglePasswordVisibility()">Show Password
+        </span>
+      </div>
+      <div class="inputform">
+        <button type="button" onclick="window.location.href='index.html'">Submit</button>
+      </div>
+
+    </form>
+    <div class="bottom-box">
+      <span id="signup" onclick="window.location.href='signup.html'">Sign up</span>
+      <span id="forgetpw">Forget Password</span>
+    </div>
+  </div>
+
+
+</div>
+
+</body>
+</html>
+
