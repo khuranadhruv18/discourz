@@ -8,19 +8,24 @@
 
 # Team Overview
 
+* Patrick Conway
+* Dhruv Khurana, khuranadhruv18
+* Panupong Leenawarat, Okrymus inc,
+* Jared Pina, J4yrad
 * Prakrit Saetang, Number535
-* Team Member Name 2, Github Username 2
-* Team Member Name 3, Github Username 3
-* Team Member Name 4, Github Username 4
-* Team Member Name 5, Github Username 5
+* Chen Xie, chen678
 
 # Innovative Idea
 
-Please describe your team's innovative idea for your project.
+We want to build a debate website to let all the students to freely discuss hit and hot om campus. There are not that individual platfom at UMass to allow students to share opinions and poll topics.
+
 
 # Important Data
 
-Please describe the important data that your application will be managing.
+* The topics under discussion, numbers of dicussion and polls
+* The debate topics and people's words
+* The topics and the number of polls
+* The user profiles, including user name, password, picture, "about me", address, and the topics they participated
 
 # User Interface
 
