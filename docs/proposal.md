@@ -42,11 +42,11 @@ The above image is a screenshot of the page where you can edit your Discourz pro
 
 ![example image](imgs/UI_Poll.png)
 
-The above image is a screenshot of the page where you can take polls, with an example poll question. The question appears on top and below it are several options for you to choose in the poll with a button next to them. Below the options are bars with percentages showing what the results of the poll are at that moment in time.
+The above image is a screenshot of the page where you can take polls with an example poll question. The question appears on the top and below it are several options for you to choose in the poll with a button next to them. Below the options are bars with percentages showing what the results of the poll are at that moment in time.
 
 ![example image](imgs/UI_discussion.png)
 
-
+The above image is a screenshot of the discussion page of our application with an example discussion in the chat box. This allows you to have a discussion about a certain topic with multiple people in one chat box. On the right side of the page, you can see all the people currently in this discussion (up to 12 including yourself). The different colored messages allow you to distinguish who is talking with ease, and the text box on the bottom allows you to type your own message.
 
 ![example image](imgs/UI_debate.png)
 
