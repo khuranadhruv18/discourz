@@ -50,3 +50,4 @@ The above image is a screenshot of the discussion page of our application with a
 
 ![example image](imgs/UI_debate.png)
 
+The above image is a screenshot of the debate page of our application with an example debate in the chat box. This page looks very similar to the discussion page, except for the fact that you can only talk to one person at a time. As in the discussion page, the colors of the messages are different colors for different people talking. There is also a text box at the bottom of the page for sending your message to the person you are debating.
