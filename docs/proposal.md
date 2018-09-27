@@ -36,4 +36,5 @@ application will intend on supporting.
 ![example image](imgs/UI_user.png)
 ![example image](imgs/UI_Poll.png)
 ![example image](imgs/UI_discussion.png)
+![example image](imgs/UI_debate.png)
 
