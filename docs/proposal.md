@@ -41,6 +41,12 @@ The above image is a screenshot of our application's home page. On the left, you
 The above image is a screenshot of the page where you can edit your Discourz profile. This page allows you to upload a photo of yourself, which will be visible to other users. There are text boxes for first name, last name and a short description of yourself. Below that, you can enter your city and use simple drop down menus to select the state and country you live in.
 
 ![example image](imgs/UI_Poll.png)
+
+The above image is a screenshot of the page where you can take polls, with an example poll question. The question appears on top and below it are several options for you to choose in the poll with a button next to them. Below the options are bars with percentages showing what the results of the poll are at that moment in time.
+
 ![example image](imgs/UI_discussion.png)
+
+
+
 ![example image](imgs/UI_debate.png)
 
