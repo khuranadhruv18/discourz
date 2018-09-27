@@ -33,8 +33,13 @@ Provide a description and images of the user interface your
 application will intend on supporting.
 
 ![example image](imgs/UI_home.png)
+
 The above image is a screenshot of our application's home page. On the left, you can see the drop down menu which directs you to different parts of our application. In the center, you can see areas where you can start multiple discussions, debates, or polls. The top right corner contains buttons that will allow you to sign up or log in.
+
 ![example image](imgs/UI_user.png)
+
+The above image is a screenshot of the page where you can edit your Discourz profile. This page allows you to upload a photo of yourself, which will be visible to other users. There are text boxes for first name, last name and a short description of yourself. Below that, you can enter your city and use simple drop down menus to select the state and country you live in.
+
 ![example image](imgs/UI_Poll.png)
 ![example image](imgs/UI_discussion.png)
 ![example image](imgs/UI_debate.png)
