@@ -179,6 +179,7 @@
   border:15px solid transparent;
   border-bottom-color:#94C2ED; 
 }
+
 @media only screen and (max-width:320px){
   .main-section{
     display: none;
