@@ -22,7 +22,7 @@ We want to build a debate website to let all the students to freely discuss hit 
 
 # Important Data
 
-* The topics under discussion, numbers of dicussion and polls
+* The topics under discussion, numbers of discussion and polls
 * The debate topics and people's words
 * The topics and the number of polls
 * The user profiles, including user name, password, picture, "about me", address, and the topics they participated, votes they received
