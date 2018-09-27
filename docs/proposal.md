@@ -33,6 +33,7 @@ Provide a description and images of the user interface your
 application will intend on supporting.
 
 ![example image](imgs/UI_home.png)
+The above image is a screenshot of our application's home page. On the left, you can see the drop down menu which directs you to different parts of our application. In the center, you can see areas where you can start multiple discussions, debates, or polls. The top right corner contains buttons that will allow you to sign up or log in.
 ![example image](imgs/UI_user.png)
 ![example image](imgs/UI_Poll.png)
 ![example image](imgs/UI_discussion.png)
