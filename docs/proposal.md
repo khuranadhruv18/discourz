@@ -8,7 +8,7 @@
 
 # Team Overview
 
-* Patrick Conway
+* Patrick Conway, pjconway
 * Dhruv Khurana, khuranadhruv18
 * Panupong Leenawarat, Okrymus inc,
 * Jared Pina, J4yrad
