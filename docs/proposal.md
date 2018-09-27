@@ -46,7 +46,7 @@ The above image is a screenshot of the page where you can take polls with an exa
 
 ![example image](imgs/UI_discussion.png)
 
-The above image is a screenshot of the discussion page of our application with an example discussion in the chat box. This allows you to have a discussion about a certain topic with multiple people in one chat box. On the right side of the page, you can see all the people currently in this discussion (up to 12 including yourself). The different colored messages allow you to distinguish who is talking with ease, and the text box on the bottom allows you to type your own message.
+The above image is a screenshot of the discussion page of our application with an example discussion in the chat box. This allows you to have a discussion about a certain topic with multiple people in one chat box. On the right side of the page, you can see all the people currently in this discussion (up to 12 including yourself). The different colored messages allow you to distinguish who is talking with ease, and the text box on the bottom allows you to type your own message. There is also a search bar in the upper right that allows the user to search for people to potentially add to the disucssion.
 
 ![example image](imgs/UI_debate.png)
 
