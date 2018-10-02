@@ -9,8 +9,8 @@ $(document).ready(function() {
 	
 function resizeContent2() {
 	let height = $(window).height();
-	$('.img-carousel').css('height', (height - 310) + 'px')
-	$('.current-topic').eq(0).css('height', (height - 400) + 'px');
+	$('.img-carousel').css('height', (height*0.50) + 'px')
+	$('.current-topic').eq(0).css('height', (height*0.35) + 'px');
 }
 
 
