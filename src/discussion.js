@@ -20,16 +20,16 @@ function toggleNav() {
          
 }
 
-$(document).ready(function(){
-	resizeContent();
+$(document).ready(function() {
+	resizeContent2();
 
     $(window).resize(function() {
-        resizeContent();
+        resizeContent2();
     });
 });
 
 	
-function resizeContent() {
+function resizeContent2() {
     var height = $(window).height();
 	$('.left-chat').css('height', (height - 138) + 'px');
 	$('.right-header-contentChat').css('height', (height - 209) + 'px');

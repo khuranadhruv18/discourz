@@ -1,39 +1,20 @@
-
-$(document).ready(function(){
-	resizeContent();
+$(document).ready(function() {
+	resizeContent2();
 
     $(window).resize(function() {
-        resizeContent();
+        resizeContent2();
     });
 });
 
 	
-function resizeContent() {
-	var width = $(window).width();
-	var sidebarWidth = $('#mySidenav').width();
-	$('.content').css('width', (width - sidebarWidth) + 'px');
+function resizeContent2() {
+	let height = $(window).height();
+	$('.img-carousel').css('height', (height - 310) + 'px')
+	$('.current-topic').eq(0).css('height', (height - 400) + 'px');
 }
 
-function toggleNav2() {
-	var width = $(window).width();
-	var x = $('#mySidenav');
-	var elements = $('.sidebar-text');
-	var content = $('.content');
 
 
-	if (x.width() !== 160) {
-		x.css('width', '160px');
-		elements.css('color', '#818181');
-		content.css('left', '160px');
-		content.css('width', (width - 160) + 'px');
-	}
-	else {
-		x.css('width', '45px');
-		elements.css('color', '#111');
-		content.css('left', '45px');
-		content.css('width', (width - 45) + 'px');
-	}
-}
 
 
 function toggleNav() {
@@ -58,3 +39,6 @@ function toggleNav() {
 	}
     
 }
+
+
+

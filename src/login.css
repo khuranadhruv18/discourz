@@ -2,11 +2,17 @@ body {
 	background-color: black;
 }
 
+.logo {
+	width: 100%;
+	text-align: center;
+	padding-top: 30px;
+}
+
 .login-box {
 
 	border-radius: 15px;
 	position: absolute;
-	margin-top: 5%;
+	margin-top: 3%;
 	margin-left: 34%;
 	display: block;
 	background-color: lightgrey;
