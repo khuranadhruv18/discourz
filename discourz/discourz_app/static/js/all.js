@@ -8,7 +8,10 @@ $(document).ready(function(){
     });
 
     let path = window.location.pathname;
-    let page = path.split("/").pop();
+    let page = path.split("/")[2];
+
+    console.log(path);
+    console.log(page);
 
     page = page.split(".")[0];
     page = page.split("_")[0];
@@ -17,7 +20,7 @@ $(document).ready(function(){
     
 
     switch (page) {
-        case "index": $('.sidebar a').eq(0).css('color', 'white'); break;
+        case "": $('.sidebar a').eq(0).css('color', 'white'); break;
         case "discussion": $('.sidebar a').eq(1).css('color', 'white'); break;
         case "debate": $('.sidebar a').eq(2).css('color', 'white'); break;
 		case "poll": $('.sidebar a').eq(3).css('color', 'white'); break;
@@ -67,11 +70,11 @@ function getToggleStatus() {
 
 function passingToggleStatus () {
     
-    
     $('.external_link').click(function () {
         
         let text = "";
         let current = $(this).attr('seq');
+        //current = current.substr(0, current.length - 1);
         console.log(current + " 1");
         if ($('#mySidenav').width() === 160) {
             text = 'on';
@@ -79,6 +82,11 @@ function passingToggleStatus () {
         else {
             text = 'off';
         }
+
+        // if (current === "/discourz/") {
+        //     console.log("in");
+        //     current = current.substr(0, current.length - 1);
+        // }
         window.location.href = current + "?cal=" + text;
     });
 }

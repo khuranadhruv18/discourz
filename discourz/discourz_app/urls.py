@@ -19,6 +19,14 @@ from django.urls import include
 from discourz_app import views
 
 urlpatterns = [
-    path('', views.profile, name='profile'),
-    
+    path('', views.index, name='index'),
+    path('profile', views.profile, name='profile'),
+    path('poll_home', views.poll_home, name='poll_home'),
+    path('poll_create', views.poll_create, name='poll_create'),
+    path('poll/<slug:uuid>/', views.poll, name='poll'),
+    path('poll_voting/<slug:uuid>/<slug:vote>/', views.poll_voting, name='poll_voting'),
+    #path('poll', views.poll, name='poll'),
+
+    path('discussion', views.discussion, name='discussion'),
+    path('debate', views.debate, name='debate'),
 ]

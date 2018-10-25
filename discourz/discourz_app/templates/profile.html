@@ -1,73 +1,14 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿{% extends "generic.html" %}
 
-  <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>SB Admin - Dashboard</title>
-
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    <!-- Load an icon library -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/index.css' %}">
-
-    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
-
-    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
-
-    <script src="{% static 'js/index.js' %}"></script>
-    
-    
-    <script src="{% static 'js/all.js' %}"></script>
-
-  </head>
-
-  <body id="page-top">
-
-    <div class="navibar">
-      
-            <a class="navibar-left" href="#" onclick="toggleNav2()"><i class="fa fa-bars"></i> Menu</a>
-            <a class="navibar-center" href="#"><img src='logo/logo.png' width="130" height="22"></a>
-        <span class="navibar-login">
-            <a href="signup.html"><i class="fa fa-user-plus"></i> Sign up</a>
-            <span></span>
-            <a href="login.html"><i class="fa fa-sign-in"></i> Log in</a>
-        </span>
-          
-    </div>
-    
-    <div class="sidebar" id="mySidenav">
-
-            <a href="#home" seq="index.html" class="external_link"><i class="fa fa-fw fa-home"></i><span class="sidebar-text"> Home</span></a>
-            <a href="#discussion" seq="discussion.html" class="external_link"><i class="fa fa-users"></i><span class="sidebar-text"> Dicussion</span></a>
-            <a href="#debate" seq="debate.html" class="external_link"><i class="fa fa-comments-o"></i><span class="sidebar-text"> Debate</span></a>
-            <a href="#poll" seq="poll_home.html" class="external_link"><i class="fa fa-bar-chart"></i><span class="sidebar-text"> Poll</span></a>
-            <a seq="#contact"><i class="fa fa-fw fa-envelope"></i><span class="sidebar-text"> Contact</span></a>
-    </div>
-
-    
+{% block content %}
     <div class="content">
             <div style="padding-top:50px;"> </div>
         <div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="media">
-                        <div align="center">
+                        <div>
                             <img class="thumbnail img-responsive" src="{{ img.url }}" width="300px" height="300px">
 
                         </div>
@@ -423,10 +364,9 @@
             </div>
         </div>    
     </div>
-    <script src="profile.js"></script>
-  </body>
+    
+{% endblock %}
 
-</html>
 
 
 

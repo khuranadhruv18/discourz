@@ -22,6 +22,11 @@ from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from discourz_app import views
 
+from django.conf.urls import url
+from django.conf import settings
+from django.contrib.auth.views import LogoutView
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,3 +36,10 @@ urlpatterns = [
 
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns += [
+    path('accounts/', include('django.contrib.auth.urls')), 
+    path('accounts/profile/', views.profile, name='profile'), 
+    path('accounts/registration', views.registration, name='SignUp'),
+    url(r'^logout/$', LogoutView.as_view(), {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
+]
