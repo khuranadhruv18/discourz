@@ -163,12 +163,27 @@ def debate(request):
 
 def profile(request):
     account = request.user.account
+    topics = PollTopic.objects.filter(owner=account).order_by("-date")[:10]
+    num_own_polls = topics.count()
+    
+    titles = []
+    images = [] 
+    owners = []
+    uuids = []
+    for topic in topics:
+        titles.append(topic.title)
+        images.append(topic.img)
+        owners.append(topic.owner.user.username)
+        uuids.append(topic.id)
 
+    polls = zip(uuids, titles, images, owners)
     context = {
         'username': account.user.username,
         'email': account.user.email,
         'bio' : account.bio,
         'img' : account.img,
+        'polls': polls,
+        'num_own_polls': num_own_polls,
     }
 
     return render(request, 'profile.html', context=context)
