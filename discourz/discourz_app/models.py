@@ -51,6 +51,7 @@ class PollTopic(models.Model):
     title = models.TextField(max_length=100, default='')
     options = models.TextField(max_length=500, default='')
     votes = models.TextField(max_length=500, default='')
+    voters = models.TextField(max_length=2000, default='')
     owner =  models.ForeignKey("Account", on_delete=models.SET_NULL, null=True)
     imgUrl = "static/avatar/man1.png"
     img = models.ImageField(upload_to=poll_directory_path, default=imgUrl)

@@ -12,7 +12,29 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 
 def index(request):
-    return render(request, 'index.html')
+    topics = PollTopic.objects.order_by("-date")[:5]
+    titles = []
+    images = [] 
+    owners = []
+    numVotes = []
+    uuids = []
+    for topic in topics:
+        titles.append(topic.title)
+        images.append(topic.img)
+        owners.append(topic.owner.user.username)
+        uuids.append(topic.id)
+        numVotes.append(len(topic.voters.split(',')) - 1)
+
+    polls = zip(uuids, titles, numVotes)
+    polls1 = zip(images, titles, owners)
+    polls2 = uuids
+
+    context = {
+        'polls': polls,
+        'polls1': polls1,
+        'polls2': polls2
+    }
+    return render(request, 'index.html', context=context)
 
 def poll_home(request):
     topics = PollTopic.objects.order_by("-date")[:10]
@@ -87,11 +109,12 @@ def poll_voting(request, uuid, vote):
         topic = PollTopic.objects.get(id=uuid)
         options = topic.options.split(',')
         votes = topic.votes.split(',')
+        voters = topic.voters
     except PollTopic.DoesNotExist:
         raise Http404('Topic does not exist')
 
-    
     vote = vote.replace("_", " ")
+
     index = -1
     i = -1
     for option in options:
@@ -100,6 +123,8 @@ def poll_voting(request, uuid, vote):
             index = i
             break
 
+    voters += request.user.username + ":" + str(index) + ","
+    topic.voters = voters
     print(index)
     votes[index] = str(int(votes[index]) + 1)
     print(votes[index])
@@ -123,8 +148,16 @@ def poll(request, uuid):
         topic = PollTopic.objects.get(id=uuid)
         options = topic.options.split(',')
         votes = topic.votes.split(',')
+        voters = topic.voters.split(',')
     except PollTopic.DoesNotExist:
         raise Http404('Topic does not exist')
+
+    voted = False
+    voters = voters[:-1]
+    for voter in voters:
+        if request.user.username == voter.split(':')[0]:
+            voted = True
+            break
 
     votesPercentage = []
     total = 0
@@ -149,6 +182,7 @@ def poll(request, uuid):
         'options': options,
         'votes': poll_info,
         'uuid': uuid,
+        'voted': voted,
     }
 
     return render(request, 'poll.html', context=context)

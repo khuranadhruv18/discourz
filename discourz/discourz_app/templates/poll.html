@@ -32,6 +32,10 @@
                             <strong>by : </strong>{{ owner }}
                         </div>
                         <div class="panel-body">
+                            {% if voted %}
+                            <h3>You have already voted</h3>
+                            <h3>Thank you</h3>
+                            {% else %}
                             <form id="radioForm">
                             {% for option in options %}
                             
@@ -41,10 +45,10 @@
                                     {{ option }}
                                 </label>
                             </div>
-                            
+                           
                             {% endfor %}
                             </form>
-                            
+                            {% endif %}
                             <hr />
                             <h5 class="text-danger">Result Of User Votes :</h5>
                             <hr />
@@ -59,10 +63,13 @@
                             {% endfor %}
                         
                         </div>
+                        {% if voted %}
+                        {% else %}
                         <div class="panel-footer">
                             <a href="#" class="btn btn-success btn-sm" id="markVote">
                             <span class="glyphicon glyphicon-bell"></span> Mark Your Vote</a>
                         </div>
+                        {% endif %}
                 </div>
 
             </div>
