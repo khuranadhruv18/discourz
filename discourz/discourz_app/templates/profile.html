@@ -1,15 +1,22 @@
 ﻿{% extends "generic.html" %}
+
 {% load static %}
 {% block css %}
 
 <link rel="stylesheet" href="{% static 'css/profile.css' %}">
 {% endblock %}
 
+
 {% block js %}
 <script src="{% static 'js/profile.js' %}"></script>
 {% endblock %}
 
 {% block content %}
+
+{% block title_outer %}
+<title>{% block title %}{{username}}{% endblock %}</title>
+{% endblock %}
+
 <div class="content">
 
     <div class="row">
@@ -57,7 +64,10 @@
                             </div>
                         </li>
                     </ul>
-                    <button class="fa fa-edit btn btn-primary followbtn">Edit profile</button>
+                    <div class="w3-container">
+                        <a href="#edit_profile" seq="{% url 'edit_profile' username %}" class="external_link fa fa-edit btn btn-primary followbtn">Edit
+                            profile</a>
+                    </div>
 
                 </div>
                 <div class="clearfix"></div>

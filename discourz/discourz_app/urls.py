@@ -21,6 +21,7 @@ from discourz_app import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('profile', views.profile, name='profile'),
+    path('edit_profile/<slug:username>',views.edit_profile, name='edit_profile'),
     path('poll_home', views.poll_home, name='poll_home'),
     path('poll_create', views.poll_create, name='poll_create'),
     path('poll/<slug:uuid>/', views.poll, name='poll'),

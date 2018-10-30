@@ -187,6 +187,16 @@ def poll(request, uuid):
 
     return render(request, 'poll.html', context=context)
 
+def edit_profile(request, username):
+    account = request.user.account
+    context = {
+        'username': account.user.username,
+        'email': account.user.email,
+        'bio' : account.bio,
+        'img' : account.img,
+    }
+
+    return render(request, 'edit_profile.html', context=context)
     
 def discussion(request):
     return render(request, 'discussion.html')
