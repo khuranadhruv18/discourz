@@ -204,13 +204,16 @@ def profile(request):
     images = [] 
     owners = []
     uuids = []
+    voters =[]
     for topic in topics:
         titles.append(topic.title)
         images.append(topic.img)
         owners.append(topic.owner.user.username)
         uuids.append(topic.id)
+        voters.append(len(topic.voters.split(','))-1)
 
-    polls = zip(uuids, titles, images, owners)
+
+    polls = zip(uuids, titles, images, owners, voters)
     context = {
         'username': account.user.username,
         'email': account.user.email,

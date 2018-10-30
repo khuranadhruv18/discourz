@@ -19,64 +19,63 @@
 {% endblock %}
 
 {% block content %}
-    <div class="content">
-            <div class="poll-header">
-                <h2>{{ title }}</h2>
-            </div>
-            
-                        
-            <br />
-            <div class="user-poll-section">
-                <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <strong>by : </strong>{{ owner }}
-                        </div>
-                        <div class="panel-body">
-                            {% if voted %}
-                            <h3>You have already voted</h3>
-                            <h3>Thank you</h3>
-                            {% else %}
-                            <form id="radioForm">
-                            {% for option in options %}
-                            
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="group-poll" value="{{ option }}">
-                                    {{ option }}
-                                </label>
-                            </div>
-                           
-                            {% endfor %}
-                            </form>
-                            {% endif %}
-                            <hr />
-                            <h5 class="text-danger">Result Of User Votes :</h5>
-                            <hr />
-                            
-                            {% for option, vote in votes %}
-                            <span>{{ option }} ({{ vote }}%) :</span>
-                            <div class="progress progress-striped active">
-                               <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ vote }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ vote }}%">
-                                   
-                               </div>
-                            </div>
-                            {% endfor %}
-                        
-                        </div>
-                        {% if voted %}
-                        {% else %}
-                        <div class="panel-footer">
-                            <a href="#" class="btn btn-success btn-sm" id="markVote">
-                            <span class="glyphicon glyphicon-bell"></span> Mark Your Vote</a>
-                        </div>
-                        {% endif %}
-                </div>
-
-            </div>
-            
+<div class="content">
+    <div class="poll-header">
+        <h2>{{ title }}</h2>
     </div>
-    
- 
+
+
+    <br />
+    <div class="user-poll-section">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong>by : </strong>{{ owner }}
+            </div>
+            <div class="panel-body">
+                {% if voted %}
+                <h3>You have already voted</h3>
+                <h3>Thank you</h3>
+                {% else %}
+                <form id="radioForm">
+                    {% for option in options %}
+
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="group-poll" value="{{ option }}">
+                            {{ option }}
+                        </label>
+                    </div>
+
+                    {% endfor %}
+                </form>
+                {% endif %}
+                <hr />
+                <h5 class="text-danger">Result Of User Votes :</h5>
+                <hr />
+
+                {% for option, vote in votes %}
+                <span>{{ option }} ({{ vote }}%) :</span>
+                <div class="progress progress-striped active">
+                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ vote }}"
+                        aria-valuemin="0" aria-valuemax="100" style="width: {{ vote }}%">
+
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+            {% if voted %}
+            {% else %}
+            <div class="panel-footer">
+                <a href="#" class="btn btn-success btn-sm" id="markVote">
+                    <span class="glyphicon glyphicon-bell"></span> Mark Your Vote</a>
+            </div>
+            {% endif %}
+        </div>
+
+    </div>
+
+</div>
+
+
 {% endblock %}
-
-
