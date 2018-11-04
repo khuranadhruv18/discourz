@@ -103,3 +103,7 @@ jQuery(function($) {
     $this.countTo(options);
   }
 });
+
+$(function() {
+  $('[data-toggle="tooltip"]').tooltip();
+});

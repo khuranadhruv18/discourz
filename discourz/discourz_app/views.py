@@ -4,6 +4,7 @@ from discourz_app.forms import CreatePoll
 
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
+import datetime
 
 from django import forms
 from discourz.forms import SignUpForm
@@ -204,6 +205,31 @@ def discussion(request):
 def debate(request):
     return render(request, 'debate.html')
 
+from datetime import datetime
+from django.utils import timezone
+
+def getBestOptionPoll(topic):
+    votes = topic.votes.split(',')
+    options = topic.options.split(',')
+
+    total = 0
+    for vote in votes:
+        total += int(vote)
+
+    if (total == 0):
+        return [], 0
+    
+    max_val = max(votes)
+    percentage = int(round(int(max_val)/total*100))
+
+    # case more than one option have same votes
+    option = []
+    i = 0
+    for val in votes:
+        if val == max_val:
+            option.append(options[i])
+        i = i + 1
+    return option, percentage
 
 def profile(request):
     account = request.user.account
@@ -215,15 +241,23 @@ def profile(request):
     owners = []
     uuids = []
     voters =[]
+    dates = []
+    bestPerc = []
+    bestOpt = []
+    
     for topic in topics:
         titles.append(topic.title)
         images.append(topic.img)
         owners.append(topic.owner.user.username)
         uuids.append(topic.id)
         voters.append(len(topic.voters.split(','))-1)
+        dates.append(topic.date)
+        option, percentage= getBestOptionPoll(topic)
+        bestOpt.append(option)
+        bestPerc.append(percentage)
+        
 
-
-    polls = zip(uuids, titles, images, owners, voters)
+    polls = zip(uuids, titles, images, owners, voters, dates,bestOpt,bestPerc)
     context = {
         'username': account.user.username,
         'email': account.user.email,
@@ -231,6 +265,7 @@ def profile(request):
         'img' : account.img,
         'polls': polls,
         'num_own_polls': num_own_polls,
+        'now': timezone.now(),
     }
 
     return render(request, 'profile.html', context=context)
