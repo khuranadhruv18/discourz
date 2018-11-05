@@ -1,0 +1,5 @@
+So far, I contributed to 2 parts of the project.  The first part is the front end (User Interface) of the website, and, the second part is the data model of the poll section of the website.
+
+In the first submission, I was responsible for implementing html, css, and script files for the homepage for each section of the website.  In this submission, I integrated the mock UI to the django project.  I designed and implemented the templates of the website including the generic template, the index homepage, and all the pages for the poll section (poll_home.html, poll.html, poll_create.html). 
+
+Also, In order to make the poll section functional, I desinged and implemented the data models and the views to be used for the poll section of the website.  This includes implementing the views which will render each poll section template and mapping the views to the url routes.
