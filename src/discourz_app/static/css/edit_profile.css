@@ -1,0 +1,37 @@
+body {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  background-color: #f0f3f5;
+}
+
+.mainbody {
+  background: #f0f0f0;
+}
+
+.dropdown-menu {
+  padding: 0px;
+  overflow: hidden;
+}
+
+.brand_network {
+  color: #9d9d9d;
+  float: left;
+  position: absolute;
+  left: 70px;
+  top: 30px;
+  font-size: smaller;
+}
+
+.post-content {
+  margin-left: 58px;
+}
+
+.badge-important {
+  margin-top: 3px;
+  margin-left: 25px;
+  position: absolute;
+}
+
+body {
+  background-color: #e8e8e8;
+}
