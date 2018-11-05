@@ -67,8 +67,13 @@
             {% if voted %}
             {% else %}
             <div class="panel-footer">
+                {% if request.user.is_authenticated %}
                 <a href="#" class="btn btn-success btn-sm" id="markVote">
                     <span class="glyphicon glyphicon-bell"></span> Mark Your Vote</a>
+                {% else %}
+                <a href="#" class="btn btn-success btn-sm">
+                        </span>Please log in to Mark Your Vote</a>
+                {% endif %}
             </div>
             {% endif %}
         </div>

@@ -3,17 +3,7 @@ from datetime import timedelta
 
 # Create a super user to use the admin site.
 from django.contrib.auth.models import User
-from discourz_app.models import Account
-
-#accounts = [
-#  Account(username="alexsun", password="12345", email="alexsun@umass.edu", bio="alex's bio"),
-#  Account(username="psaetang", password="12345", email="psaetang@umass.edu", bio="prakrit's bio")
-#]
-
-
-# Save the genres to the database
-#for account in accounts:
-#    account.save()
+from discourz_app.models import Account, PollTopic
 
 username = "discourz404"
 password = "discourz404"
@@ -23,6 +13,15 @@ adminuser.save()
 adminuser.is_superuser = True
 adminuser.is_staff = True
 adminuser.save()
+
+admin = Account.objects.all()
+
+polls = [
+    PollTopic(title="Example Poll 1", options="option1,option2,option3", votes="0,0,0", owner=admin[0]),
+]
+
+polls[0].save()
+
 message = f"""
 ====================================================================
 The database has been setup with the following credentials:
