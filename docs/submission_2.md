@@ -16,12 +16,12 @@ Video Link:
 
 
 Design Overview:
-Our data model was based on the same model reddit works on. To start, the URL's are all redirected towards "index.html" as long as they are not directed somewhere else. Our User Interface is beautifully simple. It's very simple to start a discussion, debate or a poll. It is also very simple to respond to a discussion, debate, or poll because of our perfectly implemented user interface.
+Our data model was based on the same model reddit works on. To start, the URL's are all redirected towards "index.html" as long as they are not specifically directed somewhere else. Our User Interface is beautifully simple. It's very simple to start a discussion, debate or a poll. It is also very simple to respond to a discussion, debate, or poll because of our perfectly implemented user interface.
 
 
 Problems:
-We experienced many problems along our website coding journey. The biggest problem we had to deal with was a scheduling problem. It was very hard to agree on a time where our whole team could meet. Another problem we had was regarding our UI, specifically the design of our website. Lastly, as a group we disagreed on a marketing plan if our website ever made it's debut to the general public.
+We experienced many problems along our website coding journey. The biggest problem we had to deal with was a scheduling problem. It was very hard to agree on a time where our whole team could meet. Another problem we had was regarding our UI, specifically agreeing on how we were going to design our website. Lastly, as a group we disagreed on a marketing plan if our website ever made it's debut to the general public.
 
 
 Successes:
-We are very good at using Django to build our website infrastructure. Our stength is building the back end and database structure. Another success we had was the construction of our User Interface. Our pages are simple to interact with, but smooth to interact with. We coded our interface to be user friendly. The debate, discussion, and post sections attempt to give a choice to the user with which method of communication they would be comfortable with.
+We are very good at using Django to build our website infrastructure. Our stength is building the back end and database structure. Another success we had was the construction of our User Interface. Our pages are simple to interact with. We coded our interface to be user friendly. The debate, discussion, and post sections attempt to give a choice to the user with which method of communication they would be comfortable with.
