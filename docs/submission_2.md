@@ -16,7 +16,7 @@ Video Link:
 
 
 Design Overview:
-
+Our data model was based on the same model reddit works on. To start, the URL's are all redirected towards "index.html" as long as they are not directed somewhere else. Our User Interface is beautifully simple. It's very simple to start a discussion, debate or a poll. It is also very simple to respond to a discussion, debate, or poll because of our perfectly implemented user interface.
 
 
 Problems:
