@@ -1,7 +1,7 @@
 Overview:
 As a team, we decided to build a website to debate, discuss, and poll about different issues. The purpose of this website is to start discussions or debates between people who usually would not be communicating. Once we realized that this website could be used by all people (not just Umass students) we decided to expand the idea of our website to all of the United States. Lastly, we discussed a way to make comments within the discussion section anonymous. This could become a problem if mean people join the website and start bullying others.
 
-anonymous
+
 Team Members:
 Patrick Conway, pjconway
 Dhruv Khurana, khuranadhruv18
