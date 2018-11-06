@@ -1,0 +1,6 @@
+I contributed to several aspects of this project. Specifically, I made an observation that our data model required separated table for profile, poll, detabase, and discussion. I discuss about what can be used as the identification of each query. I also work on the debate query part coding. I communicate with my teammate about implementation. 
+
+In addition, I review and test code, and fix bug. Fristly, I think about the possible scenarios when real users using our website and create test cases. Secondly, if I find bugs/errors, I review which code file(s) may cause the error. I communicate with my teammates how to solve them in the minimum cost, and I fix bug/error(s).
+
+
+Lastly, I work on the application 'selling' as well as the fifth part, video recording. I give the audience a tour of our website and show the unique parts of our app. I also show the code for our website, especially the databse and tempelates related part. I provide an overview of our data model and how your it connects to the code that we implemented for it.
