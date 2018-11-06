@@ -12,7 +12,7 @@ Chen Xie, chen678
 
 
 Video Link:
-
+https://youtu.be/vXt8NmDh9iE
 
 
 Design Overview:
