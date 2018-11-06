@@ -18,9 +18,13 @@ admin = Account.objects.all()
 
 polls = [
     PollTopic(title="Example Poll 1", options="option1,option2,option3", votes="0,0,0", owner=admin[0]),
+    PollTopic(title="What is the best dining common in UMass?", options="Worcester,Franklin,Hampshire,Berkshire", votes="0,0,0,0", owner=admin[0], img="static/img/umass.jpg"),
+    PollTopic(title="Which is the most difficult CompSci course?", options="220,230,240,250", votes="0,0,0,0", owner=admin[0], img="static/img/school.jpg"),
 ]
 
-polls[0].save()
+for poll in polls:
+  poll.save()
+
 
 message = f"""
 ====================================================================
