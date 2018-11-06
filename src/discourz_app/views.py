@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from discourz_app.models import Account, PollTopic, Debates, PastDebates, Chat
-from discourz_app.forms import CreatePoll
+from discourz_app.forms import CreatePoll, CreateDebate
 
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
@@ -12,6 +12,8 @@ from discourz.forms import EditProfileForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
+
+from django.views.decorators.csrf import csrf_exempt,csrf_protect
 
 def index(request):
     topics = PollTopic.objects.order_by("-date")[:5]
@@ -304,8 +306,35 @@ def debateChat(request, uuid):
 
     return render(request, 'debate.html', context=context)
 
+@csrf_exempt #This skips csrf validation. Use csrf_protect to have validationxs
 def debate_create(request):
     return render(request, 'debate_create.html')
+    # if request.method == 'POST':
+
+    #     # Create a form instance and populate it with data from the request (binding):
+    #     debate_form = CreateDebate(request.POST, request.FILES)
+
+    #     # process the data in form.cleaned_data as required (here we just write it to the model due_back field)
+    #     title = debate_form.title
+    #     category = debate_form.category
+    #     pisition = debate_form.position
+
+    #     #img = poll_form.data['poll_img']
+    #     owner = request.user.account
+
+    #     newDebate = Debates(title=title, topic = topic, position=position)
+    #     newDebate.save()
+    #     addedDebate = Debates.objects.order_by('-date')[0]
+    #     addedDebate.img = request.FILES['poll_img']
+    #     addedDebate.save()
+
+    #     # redirect to a new URL:
+    #     return redirect('debate_home')
+
+    # else:
+    #     debate_form = CreateDebate(initial={'title':' ', 'category':' ', 'position':' '})
+    #     context = {'form': debate_form,}
+    #     return render(request, 'debate_create.html', context)
 
 def pastChat(request, uuid):
     pastDebate = []
