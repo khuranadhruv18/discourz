@@ -8,6 +8,8 @@ import datetime
 
 from django import forms
 from discourz.forms import SignUpForm
+from discourz.forms import EditProfileForm
+
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
@@ -196,8 +198,37 @@ def edit_profile(request, username):
         'bio' : account.bio,
         'img' : account.img,
     }
-
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            user = account.user
+            user.first_name = form.cleaned_data.get('firstName')
+            user.last_name = form.cleaned_data.get('lastName')
+            user.account.bio = form.cleaned_data.get('userBio')
+            if 'profile_img' in request.FILES:
+                form.profile_img = request.FILES['profile_img']
+                user.account.img = form.cleaned_data.get('profile_img')
+            if form.cleaned_data.get('username') != "*"+user.username:
+                user.username = form.cleaned_data.get('username')
+            if form.cleaned_data.get('email') != "*"+user.email:
+                user.email = form.cleaned_data.get('email')
+            user.save()
+            return redirect('profile')
+        else:
+            print(form.errors)
+    else:
+        user = account.user
+        initialValues={
+        'username':user.username,
+        'firstName':user.first_name,
+        'lastName':user.last_name,
+        'userBio':user.account.bio,
+        'email':user.email
+        }
+        form = EditProfileForm(initial=initialValues)
+    context.update({"form":form})
     return render(request, 'edit_profile.html', context=context)
+    
     
 def discussion(request):
     return render(request, 'discussion.html')

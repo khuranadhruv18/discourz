@@ -1,0 +1,219 @@
+﻿{% extends "generic.html" %}
+
+{% load static %}
+
+
+{% block js %}
+<script src="{% static 'js/profile.js' %}"></script>
+{% endblock %}
+
+{% block css %}
+
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+
+{% block title_outer %}
+<title>{% block title %}{{username}}{% endblock %}</title>
+{% endblock %}
+
+
+<div class="content">
+
+    <div class="row">
+        <div class="col-md-12 text-center ">
+            <div class="panel panel-default">
+                <div class="userprofile social ">
+                    <div class="userpic"> <img src=" {{img.url}}" style=" width: 100%; height: 100%;" alt="" class="userpicimg">
+                    </div>
+                    <h3 class="username">{{username}}</h3>
+                    <p>{{email}}</p>
+                    <div class="socials tex-center"> <a href="" class="btn btn-circle btn-primary ">
+                            <i class="fa fa-facebook"></i></a> <a href="" class="btn btn-circle btn-danger ">
+                            <i class="fa fa-google-plus"></i></a> <a href="" class="btn btn-circle btn-info ">
+                            <i class="fa fa-twitter"></i></a> <a href="" class="btn btn-circle btn-warning "><i class="fa fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-12 border-top border-bottom">
+                    <ul class="nav nav-pills pull-left countlist" role="tablist">
+                        <li role="presentation">
+                            <div class="text-center">
+                                <i class="fa fa-trophy fa-2x"></i>
+                                <h3 class="timer count-title count-number" data-to="100" data-speed="1500"></h3>
+                                <small>Won</small>
+                            </div>
+                        </li>
+                        <li role="presentation">
+                            <div class="text-center">
+                                <i class="fa fa-frown-o fa-2x"></i>
+                                <h3 class="timer count-title count-number" data-to="100" data-speed="1500"></h3>
+                                <small>Lost</small>
+                            </div>
+                        </li>
+                        <li role="presentation">
+                            <div class="text-center">
+                                <i class="fa fa-users fa-2x"></i>
+                                <h3 class="timer count-title count-number" data-to="100" data-speed="1500"></h3>
+                                <small>Discussion</small>
+                            </div>
+                        </li>
+                        <li role="presentation">
+                            <div class="text-center">
+                                <i class="fa fa-bar-chart fa-2x"></i>
+                                <h3 class="timer count-title count-number" data-to={{num_own_polls}} data-speed="1500"></h3>
+                                <small>Polls</small>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="w3-container">
+                        <a href="#edit_profile" seq="{% url 'edit_profile' username %}" class="external_link fa fa-edit btn btn-primary followbtn">Edit
+                            profile</a>
+                    </div>
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!-- /.col-md-12 -->
+        <div class="col-md-4 col-sm-12 pull-right">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1 class="page-header small">Personal Details</h1>
+                    <p class="page-subtitle small">{{bio}}</p>
+                </div>
+
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1 class="page-header small">Tags</h1>
+                </div>
+                <div class="col-md-12">
+                    <ul class="list-group">
+                        <li class="list-group-item"><span class="fa fa-male"></span> Tag1</li>
+                        <li class="list-group-item"><span class="fa fa-institution"></span> Tag2</li>
+                        <li class="list-group-item"><span class="fa fa-user"></span> Tag3</li>
+                        <li class="list-group-item"><span class="fa fa-clock-o"></span> Tag4</li>
+                        <li class="list-group-item"><span class="fa fa-heart"></span> Tag5</li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="col-md-8 col-sm-12 pull-left posttimeline">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="status-upload nopaddingbtm">
+                        <form>
+                            <textarea class="form-control" placeholder="What are you doing right now?"></textarea>
+                            <br>
+                            <ul class="nav nav-pills pull-left ">
+                                <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Audio"><i
+                                            class="glyphicon glyphicon-bullhorn"></i></a></li>
+                                <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Video"><i
+                                            class=" glyphicon glyphicon-facetime-video"></i></a></li>
+                                <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Picture"><i
+                                            class="glyphicon glyphicon-picture"></i></a></li>
+                            </ul>
+                            <button type="submit" class="btn btn-success pull-right"> Share</button>
+                        </form>
+                    </div>
+                    <!-- Status Upload  -->
+                </div>
+            </div>
+            {% for uuid,title,img,owner,num_voter,date, bestOpt, bestPerc in polls %}
+            <div class="panel panel-default">
+                <div class="btn-group pull-right postbtn">
+                    <button type="button" class="dotbtn dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <span class="dots"></span> </button>
+                    <ul class="dropdown-menu pull-right" role="menu">
+                        <li><a href="#poll" seq="{% url 'poll' uuid %}" class="external_link" style="text-decoration:none;">More<br></a></li>
+                        <li><a href="javascript:void(0)">Report</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="media">
+                        <div class="media-left"> <a href="javascript:void(0)"> <img src="{{ img.url }}" alt="" class="media-object">
+                            </a> </div>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="#poll" seq="{% url 'poll' uuid %}" class="external_link"
+                                    style="text-decoration:none;">{{title}}<br></a>
+                                <small><i class="fa fa-clock-o"></i>{{ date|timesince:now }}</small> </h4>
+                            {% if bestOpt %}
+                            <p>The most vote option: </p>
+                            {% for opt in bestOpt %}
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0"
+                                    aria-valuemax="100" style="width: {{bestPerc}}%;" data-toggle="tooltip"
+                                    data-placement="top" title="{{bestPerc}}%">
+                                    <span class="progress-type">{{opt}}</span>
+                                </div>
+                            </div>
+
+                            {% endfor %}
+                            <!-- code here to list the books -->
+                            {% else %}
+                            <p>There are no one voted on the topic.</p>
+                            {% endif %}
+
+                            <ul class="nav nav-pills pull-left ">
+                                <li><a href="" title=""><i class="glyphicon glyphicon-thumbs-up"></i>
+                                        {{num_voter}} voters</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="panel panel-default">
+                <div class="btn-group pull-right postbtn">
+                    <button type="button" class="dotbtn dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <span class="dots"></span> </button>
+                    <ul class="dropdown-menu pull-right" role="menu">
+                        <li><a href="javascript:void(0)">Hide this</a></li>
+                        <li><a href="javascript:void(0)">Report</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-12">
+                    <div class="media">
+                        <div class="media-left"> <a href="javascript:void(0)"> <img src="{{img.url}}" alt="" class="media-object">
+                            </a> </div>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="" seq="" style="text-decoration:none;">Debate Title<br></a>
+                                <small><i class="fa fa-clock-o"></i>debate time</small>
+                            </h4>
+                            <p>You have recently debated with 6 people</p>
+                            <div class="memberblock"> <a href="" class="member"> <img src="https://bootdey.com/img/Content/avatar/avatar2.png"
+                                        alt="">
+                                    <div class="memmbername">Ajay Sriram</div>
+                                </a> <a href="" class="member"> <img src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                                        alt="">
+                                    <div class="memmbername">Rajesh Sriram</div>
+                                </a> <a href="" class="member"> <img src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                                        alt="">
+                                    <div class="memmbername">Manish Sriram</div>
+                                </a> <a href="" class="member"> <img src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                                        alt="">
+                                    <div class="memmbername">Chandra Amin</div>
+                                </a> <a href="" class="member"> <img src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                                        alt="">
+                                    <div class="memmbername">John Sriram</div>
+                                </a> <a href="" class="member"> <img src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                                        alt="">
+                                    <div class="memmbername">Lincoln Sriram</div>
+                                </a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+{% endblock %}
