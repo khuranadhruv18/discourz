@@ -77,7 +77,7 @@ class Debates(models.Model):
         ('Former', 'Former'),
         ('Latter', 'Latter')
     )
-    title = models.CharField(max_length=500, default='')
+    # title = models.CharField(max_length=500, default='')
     position = models.CharField(max_length=100, default='Select Position', choices=positionOnTopicOptions)
     category = models.CharField(max_length=100, default='')
     topic = models.CharField(max_length=500, default='')
