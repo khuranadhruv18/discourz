@@ -59,3 +59,63 @@ class PollTopic(models.Model):
 
     def __str__(self):
         return self.title
+
+class Debates(models.Model):
+    id = models.UUIDField(
+        primary_key=True,
+        default=uuid.uuid4,
+        help_text="Unique ID for this Debate",
+    )
+    isOpen = models.BooleanField(default=False)
+    positionOnTopicOptions = (
+        ('Yes', 'Yes'),
+        ('No', 'No'),
+        ('Agree', 'Agree'),
+        ('Disagree', 'Disagree'),
+        ('For', 'For'),
+        ('Against', 'Against'),
+        ('Former', 'Former'),
+        ('Latter', 'Latter')
+    )
+    position = models.CharField(max_length=100, default='Select Position', choices=positionOnTopicOptions)
+    category = models.CharField(max_length=100, default='')
+    topic = models.CharField(max_length=500, default='')
+    initial_user = models.CharField(max_length=500, default='')
+    date = models.DateField(default=datetime.now)
+
+    def __str__(self):
+        return self.topic
+
+class PastDebates(models.Model):
+    id = models.UUIDField(
+        primary_key=True,
+        default=uuid.uuid4,
+        help_text="Unique ID for this Debate",
+    )
+    positionOnTopicOptions = (
+        ('Yes', 'Yes'),
+        ('No', 'No'),
+        ('Agree', 'Agree'),
+        ('Disagree', 'Disagree'),
+        ('For', 'For'),
+        ('Against', 'Against'),
+        ('Former', 'Former'),
+        ('Latter', 'Latter')
+    )
+    user1 = models.CharField(max_length=500, default='')
+    user2 = models.CharField(max_length=500, default='')
+    user1Position = models.CharField(max_length=100, default='Select Position', choices=positionOnTopicOptions)
+    user2Position = models.CharField(max_length=100, default='Select Position', choices=positionOnTopicOptions)
+    user1votes = models.IntegerField(default=0)
+    user2votes = models.IntegerField(default=0)
+    category = models.CharField(max_length=100, default='')
+    topic = models.CharField(max_length=500, default='')
+    date = models.DateField(default=datetime.now)
+
+    def __str__(self):
+        return self.topic
+
+class Chat(models.Model):
+    username = models.CharField(max_length=100, default='myusername')
+    message = models.TextField(default='')
+    debates = models.ForeignKey(PastDebates, on_delete=models.CASCADE)

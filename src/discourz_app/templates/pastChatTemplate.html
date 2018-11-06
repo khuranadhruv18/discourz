@@ -1,0 +1,53 @@
+{% extends "generic.html" %}
+
+{% load static %}
+
+{% block css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/debate.css' %}">
+{% endblock %}
+
+{% block js %}
+  <script src="{% static 'js/debate.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    </div>
+
+    <div class="content">
+        <div class="right-header">
+            <div class="right-header-img">
+                <img src="avatar/man1.png">
+            </div>
+            <div class="right-header-detail">
+              <p>{{ topic }} in {{category}}</p>
+              <span>{{ user1 }} ({{user1votes}}) vs. {{ user2 }} ({{user2votes}})</span>
+            </div>
+        </div>
+        <div class="right-header-contentChat">
+              <ul>
+                {% for user, msg in chats %}
+                <li>
+                    {% if user == user1 %}
+                  <div class="rightside-right-chat">
+                    <span><i class="fa fa-circle" aria-hidden="true"></i> {{user}} </span><br><br>
+                    <p>{{ msg }}</p>
+                  </div>
+                    {% else %}
+                    <div class="rightside-left-chat">
+                        <span><i class="fa fa-circle" aria-hidden="true"></i> {{user}} </span><br><br>
+                            <p>{{ msg }}</p>
+                    </div>
+                    {% endif %}
+                </li>
+                {% endfor %}
+              </ul>
+          </div>
+          <div class="right-chat-textbox">
+              <input type="text"><a href="#"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+      
+
+      
+    </div>
+    
+{% endblock %}

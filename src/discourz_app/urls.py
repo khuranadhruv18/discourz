@@ -22,6 +22,10 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('aboutus', views.aboutus, name='aboutus'),
     path('profile', views.profile, name='profile'),
+    path('debate', views.debate, name='debate'),
+    path('debateChat/<slug:uuid>/', views.debateChat, name='debateChat'),
+    path('debate_create', views.debate_create, name='debate_create'),
+    path('pastChat/<slug:uuid>/', views.pastChat, name='pastChat'),
     path('edit_profile/<slug:username>',views.edit_profile, name='edit_profile'),
     path('poll_home', views.poll_home, name='poll_home'),
     path('poll_create', views.poll_create, name='poll_create'),
@@ -30,5 +34,4 @@ urlpatterns = [
     #path('poll', views.poll, name='poll'),
 
     path('discussion', views.discussion, name='discussion'),
-    path('debate', views.debate, name='debate'),
 ]

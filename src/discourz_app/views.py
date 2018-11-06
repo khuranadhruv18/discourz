@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from discourz_app.models import Account, PollTopic
+from discourz_app.models import Account, PollTopic, Debates, PastDebates, Chat
 from discourz_app.forms import CreatePoll
 
 from django.http import HttpResponseRedirect
@@ -234,7 +234,121 @@ def discussion(request):
     return render(request, 'discussion.html')
 
 def debate(request):
-    return render(request, 'debate.html')
+    debates = Debates.objects.order_by('-date')[:10]
+    uuids = []
+    positions = []
+    categories = []
+    topics = []
+    initialUsers = []
+    isDebateOpen = []
+
+    for debate in debates:
+        uuids.append(debate.id)
+        positions.append(debate.position)
+        categories.append(debate.category)
+        topics.append(debate.topic)
+        initialUsers.append(debate.initial_user)
+        isDebateOpen.append(debate.isOpen)
+
+    viewDebates = zip(uuids, positions, categories, topics, initialUsers, isDebateOpen)
+
+    context = {
+        'viewDebates' : viewDebates
+    }
+
+    pastDebates = PastDebates.objects.order_by('-date')[:10]
+    pastUuids = []
+    pastUser1 = []
+    pastUser2 = []
+    pastUser1Position = []
+    pastUser2Position = []
+    pastUser1Votes = []
+    pastUser2Votes = []
+    pastCategories = []
+    pastTopics = []
+
+    for pastDebate in pastDebates:
+        pastUuids.append(pastDebate.id)
+        pastUser1.append(pastDebate.user1)
+        pastUser2.append(pastDebate.user2)
+        pastUser1Position.append(pastDebate.user1Position)
+        pastUser2Position.append(pastDebate.user2Position)
+        pastUser1Votes.append(pastDebate.user1votes)
+        pastUser2Votes.append(pastDebate.user2votes)
+        pastCategories.append(pastDebate.category)
+        pastTopics.append(pastDebate.topic)
+    
+    viewPast = zip(pastUuids, pastUser1, pastUser2, pastUser1Position, pastUser2Position, pastUser1Votes, pastUser2Votes, pastCategories, pastTopics)
+
+    context = {
+        'viewDebates' : viewDebates,
+        'viewPast': viewPast
+    }
+
+    return render(request, 'debate_home.html', context=context)
+
+def debateChat(request, uuid):
+    otherUsername = ''
+    topic = ''
+    try:
+        debateTopic = Debates.objects.get(id=uuid)
+        otherUsername = debateTopic.initial_user
+        topic = debateTopic.topic
+    except Debates.DoesNotExist:
+        raise Http404('Topic does not exist')
+
+    context = {
+        'otherUsername': otherUsername,
+        'topic': topic
+    }
+
+    return render(request, 'debate.html', context=context)
+
+def debate_create(request):
+    return render(request, 'debate_create.html')
+
+def pastChat(request, uuid):
+    pastDebate = []
+    otherUsername = ''
+    topic = ''
+    user1 = ''
+    user2 = ''
+    user1votes = 0
+    user2votes = 0
+    category = ''
+    try:
+        pastDebate = PastDebates.objects.get(id=uuid)
+        topic = pastDebate.topic
+        user1 = pastDebate.user1
+        user2 = pastDebate.user2
+        user1votes = pastDebate.user1votes
+        user2votes = pastDebate.user2votes
+        category = pastDebate.category 
+    except PastDebates.DoesNotExist:
+        raise Http404('Topic does not exist')
+    
+    chatList = Chat.objects.filter(debates=pastDebate)
+
+    usernames = []
+    messages = []
+
+    for chat in chatList:
+        usernames.append(chat.username)
+        messages.append(chat.message)
+
+    chats = zip(usernames, messages)
+
+    context = {
+        'chats': chats,
+        'topic': topic,
+        'user1': user1,
+        'user2': user2,
+        'user1votes': user1votes,
+        'user2votes': user2votes,
+        'category': category
+    }
+
+    return render(request, 'pastChatTemplate.html', context=context)
 
 
 def getBestOptionPoll(topic):
