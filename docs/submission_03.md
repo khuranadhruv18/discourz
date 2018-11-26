@@ -9,6 +9,9 @@ Patrick Conway-pjconway, Dhruv Khurana-khuranadhruv18, Panupong Leenawarat-Okrym
 Video Link:
 
 
+Design Overview:
+
+
 
 Problems:
 The main problem that we experienced during this stage of the project was the same as our main problem for project 2, scheduling. We have a fairly large team (6 students), so finding a time where we could all meet and discuss the project outside of class proved to be difficult. Thankfully, we divided the work up during class and were able to commit our individual parts to github, but it would have been better if we could have met to discuss our project in person more. Another problem we experienced was choosing a topic for team choice. We were not disagreeing with eachother on what we should do, it just took us a while to come up with a good idea that we wanted to implement in our application.
