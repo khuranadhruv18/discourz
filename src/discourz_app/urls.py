@@ -31,6 +31,7 @@ urlpatterns = [
     path('poll_create', views.poll_create, name='poll_create'),
     path('poll/<slug:uuid>/', views.poll, name='poll'),
     path('poll_voting/<slug:uuid>/<slug:vote>/', views.poll_voting, name='poll_voting'),
+    path('poll_deleting/<slug:uuid>/', views.poll_deleting, name='poll_deleting'),
     #path('poll', views.poll, name='poll'),
 
     path('discussion', views.discussion, name='discussion'),

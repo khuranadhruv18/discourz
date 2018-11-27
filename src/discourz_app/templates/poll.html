@@ -16,6 +16,14 @@
         document.location.href = url.replace('123', select);
     });
 </script>
+<script>
+    $(document).on('click', '#deletePoll', function () {
+        var url = "{% url 'poll_deleting' uuid %}";
+        if (confirm("Are you sure you want to delete this poll?")) {
+            document.location.href = url;
+        }
+    });
+</script>
 {% endblock %}
 
 {% block content %}

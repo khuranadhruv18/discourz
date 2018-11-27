@@ -143,6 +143,11 @@ def poll_voting(request, uuid, vote):
 
     return redirect('poll', uuid=uuid)
 
+def poll_deleting(request, uuid):
+    topic = PollTopic.objects.get(id=uuid)
+    topic.delete()
+    return redirect('poll_home')
+
 def poll(request, uuid):
     #topic = PollTopic.objects.all()
     #options = topic[0].options.split(',')
