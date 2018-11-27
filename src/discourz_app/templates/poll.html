@@ -76,6 +76,11 @@
                 {% endif %}
             </div>
             {% endif %}
+            {% if perms.discourz_app.can_delete_poll %}
+            <div class="panel-footer">
+            <a href="#" class="btn btn-danger btn-sm" id="deletePoll"></span> Delete This Poll</a>
+            </div>
+            {% endif %}
         </div>
 
     </div>

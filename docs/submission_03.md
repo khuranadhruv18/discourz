@@ -1,5 +1,5 @@
 Overview: 
-Our team, 404-Name Not Found, decided in the beginning of the semester to create a website on which you could have debates, discussions, and polls about specified topics. We have not made any changes to our project proposal since the submission of project 2, but we have made a good amount of progress in building our website in that time. We have implemented login and logout functionality on our website using authentication support in Django. This allows us to give the user a specific view of our application based on the information associated with the user's profile. We used several user interaction forms in our application as well. These include the discussion page, the debate page, the poll page, the login page, the edit profile page, and the user sign up page. 
+Our team, 404-Name Not Found, decided in the beginning of the semester to create a website on which you could have debates and polls about specified topics. We have not made any changes to our project proposal since the submission of project 2, but we have made a good amount of progress in building our website in that time. We have implemented login and logout functionality on our website using authentication support in Django. This allows us to give the user a specific view of our application based on the information associated with the user's profile. We used several user interaction forms in our application as well. These include the the debate page, the poll page, the login page, the edit profile page, and the user sign up page. 
 
 
 Team Members:
@@ -10,7 +10,7 @@ Video Link:
 https://www.youtube.com/watch?v=rZ7IBnCd5Fw
 
 Design Overview:
-
+For this stage of the project, our team was able to implement login/logout functionality as well as make it so users are able to create and edit a new profile. When a user creates their profile, their profile and its information is stored in our database. After creating their profile, the user can edit basically every aspect of their profile (email, profile picture, biography, etc.) and these changes will be saved in our database. We also implemented a way for users to start debates and polls. The polls and debates that the user started will also be linked to their profile.  
 
 
 Problems:
@@ -22,3 +22,4 @@ We had several successes while working on this stage of the project, but we agre
 
 
 Team Choice:
+For the team choice section of our project, our team decided that we wanted to implement real-time chats in the debate page of our application. In order to accomplish this, we will use a library call Django Channels. This library extends Django's abilities beyond HTTP and allows it to handle chat protocols, resulting in a real-time chat. It does this by layering an asynchronous layer underneath Django, allowing it to handle connections and sockets asynchronously.
