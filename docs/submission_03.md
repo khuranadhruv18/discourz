@@ -22,3 +22,4 @@ We had several successes while working on this stage of the project, but we agre
 
 
 Team Choice:
+For the team choice section of our project, our team decided that we wanted to implement real-time chats in the discussion and debate pages of our application. In order to accomplish this, we will use a library call Django Channels. This library extends Django's abilities beyond HTTP and allows it to handle chat protocols, resulting in a real-time chat. It does this by layering an asynchronous layer underneath Django, allowing it to handle connections and sockets asynchronously.
