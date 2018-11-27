@@ -208,7 +208,7 @@ def edit_profile(request, username):
             if 'profile_img' in request.FILES:
                 form.profile_img = request.FILES['profile_img']
                 user.account.img = form.cleaned_data.get('profile_img')
-            if form.cleaned_data.get('username') != "*"+user.username:
+            if form.cleaned_data.get('username') != user.username:
                 user.username = form.cleaned_data.get('username')
             if form.cleaned_data.get('email') != "*"+user.email:
                 user.email = form.cleaned_data.get('email')
@@ -223,7 +223,7 @@ def edit_profile(request, username):
         'firstName':user.first_name,
         'lastName':user.last_name,
         'userBio':user.account.bio,
-        'email':user.email
+        'email':'*'+user.email
         }
         form = EditProfileForm(initial=initialValues)
     context.update({"form":form})
