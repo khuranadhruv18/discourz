@@ -79,8 +79,12 @@
         <div class="col-md-4 col-sm-12 pull-right">
             <div class="panel panel-default">
                 <div class="panel-heading">
+                    {% if firstname|length > 0 or lastname|length > 0 %}
+                    <h1 class="page-header small">Name: </h1>
+                    <p class="page-subtitle small">{{firstname}} {{lastname}}</p>
+                    {% endif %}
                     <h1 class="page-header small">Personal Details</h1>
-                    <p class="page-subtitle small">{{bio}}</p>
+                    <p class="page-subtitle small">{{bio}}</p>   
                 </div>
 
             </div>
@@ -139,7 +143,7 @@
                         <div class="media-body">
                             <h4 class="media-heading"><a href="#poll" seq="{% url 'poll' uuid %}" class="external_link"
                                     style="text-decoration:none;">{{title}}<br></a>
-                                <small><i class="fa fa-clock-o"></i>{{ date|timesince:now }}</small> </h4>
+                                <small><i class="fa fa-clock-o"></i> {{ date|timesince:now }}</small> </h4>
                             {% if bestOpt %}
                             <p>The most vote option: </p>
                             {% for opt in bestOpt %}

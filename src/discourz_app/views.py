@@ -432,6 +432,8 @@ def profile(request):
     polls = zip(uuids, titles, images, owners, voters, dates,bestOpt,bestPerc)
     context = {
         'username': account.user.username,
+        'firstname': account.user.first_name,
+        'lastname': account.user.last_name,
         'email': account.user.email,
         'bio' : account.bio,
         'img' : account.img,
