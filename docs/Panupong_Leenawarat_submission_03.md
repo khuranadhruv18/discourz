@@ -1,1 +1,5 @@
-Our group have done the user authentication and interaction since we submitted project 2. For the project 3, I worked on a
+Our group have done the user authentication and interaction since we submitted project 2. For the project 3, I worked on profile and edit profile pages. Now it is able to show user's name in profile page. Also,I removed unnecessary codes and make the code more clean and easier to follow. I fixed some bugs in edit profile html with edited html. The bugs cause some error when I reformatted the html file. I modified views.py. We are handing on the live debate and the live discussion part.
+
+Currently, I am adding categories in profile which allows user to receive polls and debates specific with his interests. For future usages, we displays lists polls and profiles depend on what topics the user interested in home page. However, this is not included in the submission 3 since it does not work synchronize with other parts of projects yet. 
+
+There is no major update for project 3. Overall, we focus on demonstrate sign in, sign out and user experience.
