@@ -50,9 +50,6 @@ class CreateDebate(forms.Form):
     title = forms.CharField(max_length=200)
     category = forms.CharField(max_length=200)
     position = forms.CharField(max_length=200)
-    #poll_votes = forms.CharField(max_length=500)
-    imgUrl = "static/avatar/man1.png"
-    img = forms.ImageField()
 
     def clean_title(self):
         data = self.cleaned_data['title']
@@ -60,6 +57,13 @@ class CreateDebate(forms.Form):
     def clean_category(self):
         data = self.cleaned_data['category']
         return data
-    def clean_img(self):
-        data = self.cleaned_data['img']
+    def clean_position(self):
+        data = self.cleaned_data['position']
+        return data
+
+class whichVote(forms.Form):
+    vote = forms.CharField(max_length=200)
+
+    def clean_title(self):
+        data = self.cleaned_data['vote']
         return data

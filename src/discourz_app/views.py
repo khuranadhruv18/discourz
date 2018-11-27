@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from discourz_app.models import Account, PollTopic, Debates, PastDebates, Chat
-from discourz_app.forms import CreatePoll, CreateDebate
+from discourz_app.forms import CreatePoll, CreateDebate, whichVote
 
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
@@ -289,6 +289,7 @@ def debate(request):
 
     return render(request, 'debate_home.html', context=context)
 
+
 def debateChat(request, uuid):
     otherUsername = ''
     topic = ''
@@ -308,77 +309,74 @@ def debateChat(request, uuid):
 
 @csrf_exempt #This skips csrf validation. Use csrf_protect to have validationxs
 def debate_create(request):
-    return render(request, 'debate_create.html')
-    # if request.method == 'POST':
+    if request.method == 'POST':
+        debate_form = CreateDebate(request.POST, request.FILES)
+        title = debate_form.data['title']
+        category = debate_form.data['category']
+        position = debate_form.data['position']
+        user1 = request.user.username
+        newDebate = Debates(topic=title, isOpen=True, position=position, category=category, initial_user=user1)
+        newDebate.save()
+        return HttpResponseRedirect("/discourz/debate")
+    else:
+        return render(request, 'debate_create.html')
 
-    #     # Create a form instance and populate it with data from the request (binding):
-    #     debate_form = CreateDebate(request.POST, request.FILES)
-
-    #     # process the data in form.cleaned_data as required (here we just write it to the model due_back field)
-    #     title = debate_form.title
-    #     category = debate_form.category
-    #     pisition = debate_form.position
-
-    #     #img = poll_form.data['poll_img']
-    #     owner = request.user.account
-
-    #     newDebate = Debates(title=title, topic = topic, position=position)
-    #     newDebate.save()
-    #     addedDebate = Debates.objects.order_by('-date')[0]
-    #     addedDebate.img = request.FILES['poll_img']
-    #     addedDebate.save()
-
-    #     # redirect to a new URL:
-    #     return redirect('debate_home')
-
-    # else:
-    #     debate_form = CreateDebate(initial={'title':' ', 'category':' ', 'position':' '})
-    #     context = {'form': debate_form,}
-    #     return render(request, 'debate_create.html', context)
-
+@csrf_exempt
 def pastChat(request, uuid):
-    pastDebate = []
-    otherUsername = ''
-    topic = ''
-    user1 = ''
-    user2 = ''
-    user1votes = 0
-    user2votes = 0
-    category = ''
-    try:
+    if request.method == 'POST':
+        vote_form = whichVote(request.POST, request.FILES)
         pastDebate = PastDebates.objects.get(id=uuid)
-        topic = pastDebate.topic
-        user1 = pastDebate.user1
-        user2 = pastDebate.user2
-        user1votes = pastDebate.user1votes
-        user2votes = pastDebate.user2votes
-        category = pastDebate.category 
-    except PastDebates.DoesNotExist:
-        raise Http404('Topic does not exist')
-    
-    chatList = Chat.objects.filter(debates=pastDebate)
+        numUser = vote_form.data['vote']
+        numUser = numUser[:1]
+        if numUser == '1':
+            pastDebate.user1votes = pastDebate.user1votes + 1
+            pastDebate.save()
+        else:
+            pastDebate.user2votes = pastDebate.user2votes + 1
+            pastDebate.save()
+        return HttpResponseRedirect("/discourz/debate")
+    else:
+        pastDebate = []
+        otherUsername = ''
+        topic = ''
+        user1 = ''
+        user2 = ''
+        user1votes = 0
+        user2votes = 0
+        category = ''
+        try:
+            pastDebate = PastDebates.objects.get(id=uuid)
+            topic = pastDebate.topic
+            user1 = pastDebate.user1
+            user2 = pastDebate.user2
+            user1votes = pastDebate.user1votes
+            user2votes = pastDebate.user2votes
+            category = pastDebate.category 
+        except PastDebates.DoesNotExist:
+            raise Http404('Topic does not exist')
+        
+        chatList = Chat.objects.filter(debates=pastDebate)
 
-    usernames = []
-    messages = []
+        usernames = []
+        messages = []
 
-    for chat in chatList:
-        usernames.append(chat.username)
-        messages.append(chat.message)
+        for chat in chatList:
+            usernames.append(chat.username)
+            messages.append(chat.message)
 
-    chats = zip(usernames, messages)
+        chats = zip(usernames, messages)
 
-    context = {
-        'chats': chats,
-        'topic': topic,
-        'user1': user1,
-        'user2': user2,
-        'user1votes': user1votes,
-        'user2votes': user2votes,
-        'category': category
-    }
-
-    return render(request, 'pastChatTemplate.html', context=context)
-
+        context = {
+            'chats': chats,
+            'topic': topic,
+            'user1': user1,
+            'user2': user2,
+            'user1votes': user1votes,
+            'user2votes': user2votes,
+            'category': category,
+            'uuid': uuid
+        }
+        return render(request, 'pastChatTemplate.html', context=context)
 
 def getBestOptionPoll(topic):
     votes = topic.votes.split(',')
