@@ -1,0 +1,5 @@
+I work on similar parts of this project as the second version submission. Because our team was ahead of the schedule, we had met majority of the requirement of this submission when we submission for the second project. As this make the third project easier, I am able to spend more time on testing and quality assurance.
+
+Specifically, I setup various scenario and write input for all the parts of our application. For example, I test the input of username and set characters limitation---currently our application does not accept using some special characters as the username. I also notice the influence of different usernames to data management. I suggest that we can use numerical ID instead of username to identify users when storing polls, debates, and chatting data.
+
+Lastly, I work on the application 'selling', the video recording. I give the audience a tour of our website and show the unique parts of our app. I also show the code for our website, especially the databse and render related part. I provide an overview of our database and groups.
