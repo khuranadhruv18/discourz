@@ -1,0 +1,5 @@
+For this part of the project, my main contributions were doing the write-ups and ensuring that everything that needed to be submitted regarding this stage of the project and the challenges. In addition to this, I organized meeting times and conversed with my team about how we were going to implement the data model and URL mappings.
+
+I reserved myself mainly to taking care of the write-ups and challenges because of the experience present on my team and the different skills we all possess. Since I am an informatics major and the rest of my group consists of computer science majors, they have much more coding experience than I do and some have worked with web design before. I felt as though the project would go smoothly if they took care of most of the coding and I took care of all the writing and non-coding parts of the project. That being said, I do look through code and debug.
+
+Lastly, I oversaw the big picture of the project and made sure that everything was turned in on time and divided up work to make sure that everything was completed. This was very important beccause everyone in our group was working on a different part of the project.

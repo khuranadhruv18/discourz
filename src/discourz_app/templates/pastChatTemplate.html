@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block js %}
-  <script src="{% static 'js/debate.js' %}"></script>
+   <script src="{% static 'js/debate.js' %}"></script> 
 {% endblock %}
 
 {% block content %}
@@ -21,6 +21,10 @@
             <div class="right-header-detail">
               <p>{{ topic }} in {{category}}</p>
               <span>{{ user1 }} ({{user1votes}}) vs. {{ user2 }} ({{user2votes}})</span>
+            </div>
+            <div class="left-header-detail">
+                <p>{{ topic }} in {{category}}</p>
+                <span>{{ user1 }} ({{user1votes}}) vs. {{ user2 }} ({{user2votes}})</span>
             </div>
         </div>
         <div class="right-header-contentChat">
@@ -42,9 +46,17 @@
                 {% endfor %}
               </ul>
           </div>
-          <div class="right-chat-textbox">
-              <input type="text"><a href="#"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
-          </div>
+          <div class="right-chat-vote">
+              <p> Vote  {{ user1 }} or Vote {{user2}} </p>
+              <form method='post' enctype="multipart/form-data" nonvalidate>
+                <input type='text' name ='vote' value='1: {{user1}}' readonly> </input>
+                <input name="Vote {{user1}}" value='Vote!' type="Submit"></input>
+              </form>
+              <form method='post' enctype="multipart/form-data" nonvalidate>
+                <input type='text' name='vote' value='2: {{user2}}'> </input>
+                <input name="Vote {{user2}}" value='Vote!' type="Submit"></input>
+              </form>
+            </div>
       
 
       

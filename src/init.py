@@ -5,6 +5,16 @@ from datetime import timedelta
 from django.contrib.auth.models import User
 from discourz_app.models import Account, PollTopic
 
+from django.contrib.auth.models import Group, Permission
+from django.contrib.contenttypes.models import ContentType
+
+admins, created = Group.objects.get_or_create(name='admins')
+
+ct = ContentType.objects.get_for_model(PollTopic)
+
+permission = Permission.objects.create(codename='can_delete_poll',name='Can delete poll',content_type=ct)
+admins.permissions.add(permission)
+
 username = "discourz404"
 password = "discourz404"
 email = "admin@326.edu"
@@ -12,9 +22,14 @@ adminuser = User.objects.create_user(username, email, password)
 adminuser.save()
 adminuser.is_superuser = True
 adminuser.is_staff = True
+
 adminuser.save()
 
 admin = Account.objects.all()
+
+users = User.objects.all()
+my_group = Group.objects.get(name='admins') 
+my_group.user_set.add(users[0])
 
 polls = [
     PollTopic(title="Example Poll 1", options="option1,option2,option3", votes="0,0,0", owner=admin[0]),

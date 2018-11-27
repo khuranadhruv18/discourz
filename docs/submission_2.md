@@ -25,3 +25,7 @@ We experienced many problems along our website coding journey. The biggest probl
 
 Successes:
 We are very good at using Django to build our website infrastructure. Our stength is building the back end and database structure. Another success we had was the construction of our User Interface. Our pages are simple to interact with. We coded our interface to be user friendly. The debate, discussion, and post sections attempt to give a choice to the user with which method of communication they would be comfortable with.
+
+
+Data Model Diagram:
+![Data model diagram](imgs/diagram.png)
