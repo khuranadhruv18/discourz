@@ -7,7 +7,7 @@ Patrick Conway-pjconway, Dhruv Khurana-khuranadhruv18, Panupong Leenawarat-Okrym
 
 
 Video Link:
-
+https://www.youtube.com/watch?v=rZ7IBnCd5Fw
 
 Design Overview:
 
