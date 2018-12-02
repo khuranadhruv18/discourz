@@ -14,9 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.conf.urls import url
 from django.urls import path
 from django.urls import include
 from discourz_app import views
+from discourz_app.views import SearchView
+
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -33,6 +36,6 @@ urlpatterns = [
     path('poll_voting/<slug:uuid>/<slug:vote>/', views.poll_voting, name='poll_voting'),
     path('poll_deleting/<slug:uuid>/', views.poll_deleting, name='poll_deleting'),
     #path('poll', views.poll, name='poll'),
-
+    url(r'^search/$', SearchView.as_view(), name='search'),
     path('discussion', views.discussion, name='discussion'),
 ]

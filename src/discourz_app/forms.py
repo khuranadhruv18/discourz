@@ -17,6 +17,18 @@ def poll_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
     return 'poll_topic/user_{0}/{1}'.format(instance.id, filename)
     
+class CommentForm(forms.Form):
+    text = forms.CharField(widget=forms.Textarea(), max_length=1000,)
+    PollId = forms.CharField(max_length=100)
+
+    def __init__(self, *args, **kwargs):
+        super(CommentForm, self).__init__(*args, **kwargs)
+        self.fields['text'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Tell people what you think'})
+        self.fields['PollId'].widget.attrs.update({'class': 'form-control',})
+
+    class Meta:
+        fields = ('text', 'PollId')
+
 class CreatePoll(forms.Form):
     poll_title = forms.CharField(max_length=100)
     poll_op1 = forms.CharField(max_length=200)
@@ -31,7 +43,7 @@ class CreatePoll(forms.Form):
     poll_op10 = forms.CharField(max_length=200)
     poll_op11 = forms.CharField(max_length=200)
     poll_op12 = forms.CharField(max_length=200)
-    #poll_votes = forms.CharField(max_length=500)
+    poll_tags = forms.CharField(max_length=500)
     imgUrl = "static/avatar/man1.png"
     poll_img = forms.ImageField()
 

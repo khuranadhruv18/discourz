@@ -447,6 +447,11 @@ body {
   float: none;
   display: table;
 }
+.box {
+   display: flex;
+   align-items:flex-start;
+}
+
 /* .mainbody {
   background: #f0f0f0;
 }

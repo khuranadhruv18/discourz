@@ -54,7 +54,7 @@ class EditProfileForm(forms.Form):
         self.fields['profile_img'].widget.attrs.update({'style':'display:none;', 'id':'profile_img', 'onchange':"document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])"})
         self.fields['email'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Your Email'})        
         self.fields['userBio'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Tell us about yourself'})
-        self.fields['userTags'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Ex: Travelling,Netflix,...'})
+        self.fields['userTags'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Ex: #Travelling#Netflix,...'})
     
     class Meta:
         model = User

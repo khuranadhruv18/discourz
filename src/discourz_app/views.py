@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from discourz_app.models import Account, PollTopic, Debates, PastDebates, Chat
-from discourz_app.forms import CreatePoll, CreateDebate, whichVote
+from discourz_app.models import Account, PollTopic, Debates, PastDebates, Chat, Comment
+from discourz_app.forms import CreatePoll, CreateDebate, whichVote, CommentForm
+from django.views.generic import TemplateView
 
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
@@ -84,7 +85,7 @@ def poll_create(request):
 
         string = string[:-1]
         votes = votes[:-1]
-
+        PollTags = (((poll_form.data['poll_tags']).lower()).replace(" ","")).split("#")
         #img = poll_form.data['poll_img']
         owner = request.user.account
 
@@ -92,6 +93,7 @@ def poll_create(request):
         newPoll.save()
         addedPoll = PollTopic.objects.order_by('-date')[0]
         addedPoll.img = request.FILES['poll_img']
+        addedPoll.set_tags(PollTags)
         addedPoll.save()
 
         # redirect to a new URL:
@@ -157,6 +159,7 @@ def poll(request, uuid):
         options = topic.options.split(',')
         votes = topic.votes.split(',')
         voters = topic.voters.split(',')
+        CommentList = Comment.objects.filter(Poll=topic)
     except PollTopic.DoesNotExist:
         raise Http404('Topic does not exist')
 
@@ -183,6 +186,7 @@ def poll(request, uuid):
     #owner = topic[0].owner.username
     owner = topic.owner.user.username
     poll_info = zip(options, votesPercentage)
+    
 
     context = {
         'title': topic.title,
@@ -191,7 +195,20 @@ def poll(request, uuid):
         'votes': poll_info,
         'uuid': uuid,
         'voted': voted,
+        'CommentList':CommentList,
+        'form':CommentForm(),
+        'tags': topic.get_tags(),
     }
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.cleaned_data['text']
+            PollId = form.cleaned_data['PollId']
+            Poll = (PollTopic.objects.filter(id = PollId))[0]
+            newComment = Comment(text = comment, Poll = Poll, user = request.user)
+            newComment.save()
+            return redirect('poll',uuid)
 
     return render(request, 'poll.html', context=context)
 
@@ -211,7 +228,7 @@ def edit_profile(request, username):
             user.last_name = form.cleaned_data.get('lastName')
             user.account.bio = form.cleaned_data.get('userBio')
             myTags = ((form.cleaned_data.get('userTags')).lower()).replace(" ","")
-            myTags = myTags.split(",")
+            myTags = myTags.split("#")
             user.account.set_tags(myTags)
             if 'profile_img' in request.FILES:
                 form.profile_img = request.FILES['profile_img']
@@ -254,7 +271,7 @@ def debate(request):
     for debate in debates:
         uuids.append(debate.id)
         positions.append(debate.position)
-        categories.append(debate.category)
+        categories.append(debate.get_tags())
         topics.append(debate.topic)
         initialUsers.append(debate.initial_user)
         isDebateOpen.append(debate.isOpen)
@@ -284,7 +301,7 @@ def debate(request):
         pastUser2Position.append(pastDebate.user2Position)
         pastUser1Votes.append(pastDebate.user1votes)
         pastUser2Votes.append(pastDebate.user2votes)
-        pastCategories.append(pastDebate.category)
+        pastCategories.append(pastDebate.get_tags())
         pastTopics.append(pastDebate.topic)
     
     viewPast = zip(pastUuids, pastUser1, pastUser2, pastUser1Position, pastUser2Position, pastUser1Votes, pastUser2Votes, pastCategories, pastTopics)
@@ -319,10 +336,11 @@ def debate_create(request):
     if request.method == 'POST':
         debate_form = CreateDebate(request.POST, request.FILES)
         title = debate_form.data['title']
-        category = debate_form.data['category']
+        DebateTags = (((poll_form.data['category']).lower()).replace(" ","")).split("#")
         position = debate_form.data['position']
         user1 = request.user.username
-        newDebate = Debates(topic=title, isOpen=True, position=position, category=category, initial_user=user1)
+        newDebate = Debates(topic=title, isOpen=True, position=position, initial_user=user1)
+        newDebate.set_tags(DebateTags)
         newDebate.save()
         return HttpResponseRedirect("/discourz/debate")
     else:
@@ -358,7 +376,7 @@ def pastChat(request, uuid):
             user2 = pastDebate.user2
             user1votes = pastDebate.user1votes
             user2votes = pastDebate.user2votes
-            category = pastDebate.category 
+            category = pastDebate.tags 
         except PastDebates.DoesNotExist:
             raise Http404('Topic does not exist')
         
@@ -412,7 +430,6 @@ def profile(request):
     account = request.user.account
     topics = PollTopic.objects.filter(owner=account).order_by("-date")[:10]
     num_own_polls = topics.count()
-    
     titles = []
     images = [] 
     owners = []
@@ -421,6 +438,8 @@ def profile(request):
     dates = []
     bestPerc = []
     bestOpt = []
+    commentListList=[]
+    commentNums = []
     
     for topic in topics:
         titles.append(topic.title)
@@ -432,9 +451,11 @@ def profile(request):
         option, percentage= getBestOptionPoll(topic)
         bestOpt.append(option)
         bestPerc.append(percentage)
+        commentListList.append(Comment.getPollComments(topic))
+        commentNums.append(len(Comment.objects.filter(Poll=topic)))
         
 
-    polls = zip(uuids, titles, images, owners, voters, dates,bestOpt,bestPerc)
+    polls = zip(uuids, titles, images, owners, voters, dates,bestOpt,bestPerc,commentListList,commentNums)
     context = {
         'username': account.user.username,
         'firstname': account.user.first_name,
@@ -446,7 +467,17 @@ def profile(request):
         'num_own_polls': num_own_polls,
         'now': timezone.now(),
         'tagList':account.get_tag_list(),
+        'form':CommentForm(),
     }
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.cleaned_data['text']
+            PollId = form.cleaned_data['PollId']
+            Poll = (PollTopic.objects.filter(id = PollId))[0]
+            newComment = Comment(text = comment, Poll = Poll, user = request.user)
+            newComment.save()
+            return redirect('profile')
 
     return render(request, 'profile.html', context=context)
 
@@ -474,3 +505,13 @@ def registration(request):
         form = SignUpForm()
     return render(request, 'registration/registration.html', {'form': form})
     
+class SearchView(TemplateView):
+    template_name = 'search.html'
+
+    def get(self, request, *args, **kwargs):
+        q = request.GET.get('q', '')
+        self.results = PollTopic.objects.filter(tags__icontains=q)
+        return super().get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        return super().get_context_data(results=self.results, **kwargs)

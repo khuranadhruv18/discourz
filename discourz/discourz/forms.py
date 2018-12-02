@@ -50,3 +50,6 @@ class EditProfileForm(forms.Form):
             'userBio': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Your Email'}),
             'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Your Email'}),
         }
+class CommentForm(forms.Form):
+    text = forms.CharField(widget=forms.Textarea(), max_length=1000,)
+    PollId = forms.CharField(max_length=100)

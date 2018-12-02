@@ -37,7 +37,7 @@
     <div class="user-poll-section">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <strong>by : </strong>{{ owner }}
+                <strong>By : </strong>{{ owner }} <strong>Tags:  </strong>{{tags}}
             </div>
             <div class="panel-body">
                 {% if voted %}
@@ -70,7 +70,6 @@
                     </div>
                 </div>
                 {% endfor %}
-
             </div>
             {% if voted %}
             {% else %}
@@ -89,6 +88,25 @@
             <a href="#" class="btn btn-danger btn-sm" id="deletePoll"></span> Delete This Poll</a>
             </div>
             {% endif %}
+			{% for comment in CommentList %}
+				<div class="col-md-8">
+					<div class="panel panel-default">
+						<div class="media-body">
+							<img src="{{comment.user.account.img.url}}" style=" width: 6%; height: 10%;">
+							<span style="">{{comment.text}}</span>
+							<p>{{comment.user.username}} at {{comment.date}}</p>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+			<div>
+				<form method="post" enctype="multipart/form-data">
+					{% csrf_token %}
+					{{form.text}}
+					<input type="text" name="PollId" maxlength="100" class="form-control" required id="id_PollId" value = "{{uuid}}" style="display: none">
+					<button type="submit" class="btn btn-success pull-right"> Share</button>
+				</form>
+			</div>
         </div>
 
     </div>

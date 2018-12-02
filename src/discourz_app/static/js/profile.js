@@ -103,3 +103,17 @@ jQuery(function($) {
     $this.countTo(options);
   }
 });
+
+function ShowHideComments(commentId) {
+  var x = document.getElementById("comment"+commentId);
+  if (x.style.display === "none") {
+      x.style.display = "block";
+  } else {
+      x.style.display = "none";
+  }
+  return false;
+}
+
+function UpdateComment() {
+  
+}
