@@ -313,38 +313,65 @@ def debate(request):
 
     return render(request, 'debate_home.html', context=context)
 
+def joinChat(request, uuid):
+    try:
+        debateTopic = Debates.objects.get(id=uuid) 
+        print(debateTopic)
+        if debateTopic.other_user != '' or request.user.username == debateTopic.initial_user:
+            return HttpResponseRedirect("/discourz/debate")
+        debateTopic.other_user = request.user.username
+        debateTopic.isOpen = False
+        debateTopic.save()
+    except Debates.DoesNotExist as x:
+        print(x)
+    context = { 'id' : uuid }
+    return render(request, 'joinChat.html', context=context)
+
 
 def debateChat(request, uuid):
-    otherUsername = ''
-    topic = ''
     try:
         debateTopic = Debates.objects.get(id=uuid)
-        otherUsername = debateTopic.initial_user
+        myUser = ''
+        otherUser = ''
+        if request.user.username == debateTopic.initial_user:
+            myUser = debateTopic.initial_user
+            otherUser = debateTopic.other_user
+        else:
+            myUser = debateTopic.other_user
+            otherUser = debateTopic.initial_user
         topic = debateTopic.topic
-    except Debates.DoesNotExist:
-        raise Http404('Topic does not exist')
-
-    context = {
-        'otherUsername': otherUsername,
-        'topic': topic
-    }
-
-    return render(request, 'debate.html', context=context)
+        context = {
+            'id' : uuid,
+            'myUser' : myUser,  
+            'otherUsername' : otherUser,
+            'topic' : topic
+        }
+        return render(request, 'debate.html', context=context)
+    except Debates.DoesNotExist as x:
+        print(x)
+    return HttpResponseRedirect("/debate")
 
 @csrf_exempt #This skips csrf validation. Use csrf_protect to have validationxs
 def debate_create(request):
     if request.method == 'POST':
         debate_form = CreateDebate(request.POST, request.FILES)
         title = debate_form.data['title']
-        DebateTags = (((poll_form.data['category']).lower()).replace(" ","")).split("#")
+        DebateTags = (((debate_form.data['category']).lower()).replace(" ","")).split("#")
         position = debate_form.data['position']
         user1 = request.user.username
         newDebate = Debates(topic=title, isOpen=True, position=position, initial_user=user1)
         newDebate.set_tags(DebateTags)
         newDebate.save()
-        return HttpResponseRedirect("/discourz/debate")
+        uuid = str(newDebate.id)
+        return HttpResponseRedirect("/discourz/waitLobby/" + uuid)
     else:
         return render(request, 'debate_create.html')
+
+def waitLobby(request, id):
+    context = {
+        'id' : id    
+    }
+    return render(request, 'waitLobby.html', context=context)
 
 @csrf_exempt
 def pastChat(request, uuid):

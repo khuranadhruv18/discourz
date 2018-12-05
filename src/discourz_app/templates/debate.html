@@ -24,18 +24,121 @@
             </div>
             <div class="right-header-detail">
               <p>{{ topic }}</p>
-              <span>{{ otherUsername }}</span>
+              <span>{{ myUser }} vs. {{ otherUsername }}</span>
             </div>
         </div>
           
           <div class="right-header-contentChat">
           </div>
           <div class="right-chat-textbox">
-              <input type="text"><a href="#"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+              <input type="text" id="msgText">
+              <!-- <a href="#"><i class="fa fa-arrow-right" aria-hidden="true"></i></a> -->
+              <input type="button" class="fa fa-arrow-right" aria-hidden="true" onclick="sendMsg();">
           </div>
-      
-
-      
     </div>
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
+    <script>
+      var config = {
+          apiKey: "AIzaSyB8I3pN5rhyokyaWMTKmAJh168Ja2riK2c",
+          authDomain: "discourse-5a986.firebaseapp.com",
+          databaseURL: "https://discourse-5a986.firebaseio.com/",
+          projectId: "discourse-5a986",
+          storageBucket: "discourse-5a986.appspot.com",
+          messagingSenderId: "609676796691"
+      };
+      firebase.initializeApp(config);
+      var rootRef = firebase.database();
+      var idKey = ''
+      var otherId = ''
+
+      rootRef.ref('/').orderByChild('uuid').equalTo('{{ id }}').once('value', (snap) => {
+            var array = Object.keys(snap.val());
+            var obj = snap.val();
+            idKey = obj[array[0]].refKey;
+            otherId = obj[array[0]].uuid;
+      }).then(() => {
+        rootRef.ref('/' + idKey + '/chats').on('child_added', (snapshot) => {
+        // all records after the last continue to invoke this function
+        //console.log(snapshot.name(), snapshot.val());
+        // get the last inserted key
+          alert(snapshot.val());
+        /*if (snapshot.val() != null) {
+          var keyName = Object.keys(snapshot.val())[0];
+          console.log(keyName);
+        } */
+        //console.log();
+        /*var obj = snapshot.val();
+        //var array = Object.keys(snapshot.val());
+        var keyName = Object.keys(snapshot.val())[0];
+        if (obj[keyname] == '{{ myUser }}') {
+          //addRight(snapshot.val());
+          console.log(keyName);
+          console.log(obj[keyName]);
+        } else {
+          //addLeft(snapshot.val());
+          console.log(keyName);
+          console.log(obj[keyName]);
+        } */
+        });
+
+      });
+      
+      function addRight(val) {
+        var message = val;
+        var ul = document.getElementById("chats");
+        var li = document.createElement("li");
+        var div = document.createElement('div');
+        div.className = "rightside-right-chat";
+        var span = document.createElement('span');
+        var i = document.createElement('i');
+        i.classList.add('fa');
+        i.classList.add('fa-cricle');
+        span.appendChild(i);
+        span.innerHTML = '{{ myUser }}';
+        var br = document.createElement('br');
+        var text = document.createTextNode(message);
+
+        div.appendChild(span);
+        div.appendChild(br);
+        div.appendChild(br);
+        div.appendChild(text);
+        li.appendChild(div);
+        ul.appendChild(li);
+      }
+
+      function addLeft(val) {
+        var message = val;
+        var ul = document.getElementById("chats");
+        var li = document.createElement("li");
+        var div = document.createElement('div');
+        div.className = "rightside-left-chat";
+        var span = document.createElement('span');
+        var i = document.createElement('i');
+        i.classList.add('fa');
+        i.classList.add('fa-cricle');
+        span.appendChild(i);
+        span.innerHTML = '{{ otherUsername }}';
+        var br = document.createElement('br');
+        var text = document.createTextNode(message);
+
+        div.appendChild(span);
+        div.appendChild(br);
+        div.appendChild(br);
+        div.appendChild(text);
+        li.appendChild(div);
+        ul.appendChild(li);
+      } 
+
+      function sendMsg() {
+        if (idKey == '') {
+          alert('Please wait a few seconds, we are in the process of connecting you')
+        } else {
+          var text = document.getElementById('msgText').value;
+          console.log('{{ myUser }}'); 
+          rootRef.ref('/' + idKey + '/chats').push("{{ myUser }}: " + text);
+          document.getElementById('msgText').value == "";
+        }
+      }     
+    </script>
     
 {% endblock %}

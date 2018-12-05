@@ -113,6 +113,7 @@ class Debates(models.Model):
     tags = models.CharField(max_length=100, default='["General"]')
     topic = models.CharField(max_length=500, default='')
     initial_user = models.CharField(max_length=500, default='')
+    other_user = models.CharField(max_length=500, default='')
     date = models.DateField(default=datetime.now)
 
     def __str__(self):
